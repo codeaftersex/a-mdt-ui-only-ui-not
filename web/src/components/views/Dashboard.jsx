@@ -1,0 +1,198 @@
+import { motion } from 'framer-motion'
+import {
+  Radio,
+  Users,
+  FileWarning,
+  ClipboardList,
+  Activity,
+  AlertTriangle,
+  TrendingUp,
+  Siren,
+} from 'lucide-react'
+import { Card, CardHeader, Badge } from '../ui/Card'
+import { Avatar } from '../ui/Avatar'
+import { dispatch, onlineUnits, stats, warrants } from '../../data/mock'
+
+function StatTile({ icon: Icon, label, value, accent, sub }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+      className="relative overflow-hidden rounded-xl border border-white/5 bg-[#0f1a2e]/60 p-5"
+    >
+      <div
+        className={`absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-2xl ${accent}`}
+      />
+      <div className="relative flex items-start justify-between">
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
+            {label}
+          </div>
+          <div className="mt-2 font-mono text-3xl font-semibold text-slate-50 tabular-nums">
+            {value}
+          </div>
+          {sub && (
+            <div className="mt-1 text-xs text-slate-500 flex items-center gap-1">
+              <TrendingUp className="h-3 w-3 text-emerald-400" /> {sub}
+            </div>
+          )}
+        </div>
+        <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/5">
+          <Icon className="h-5 w-5 text-slate-300" />
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+const priorityTone = { 1: 'danger', 2: 'warn', 3: 'info' }
+
+export function Dashboard() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-sky-400/80">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-400" />
+          Live overview
+        </div>
+        <h1 className="mt-1 text-2xl font-semibold text-slate-50">
+          Good evening, Sgt. Reynolds
+        </h1>
+        <p className="text-sm text-slate-500">
+          You have 4 active calls in your district. Stay safe out there.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
+        <StatTile icon={Radio} label="Active calls" value={stats.activeCalls} accent="bg-rose-500" sub="+2 last hour" />
+        <StatTile icon={Activity} label="Units avail." value={stats.unitsAvailable} accent="bg-emerald-500" />
+        <StatTile icon={Siren} label="Units busy" value={stats.unitsBusy} accent="bg-amber-500" />
+        <StatTile icon={FileWarning} label="Open warrants" value={stats.warrantsOpen} accent="bg-violet-500" />
+        <StatTile icon={ClipboardList} label="Reports today" value={stats.reportsToday} accent="bg-sky-500" sub="On pace" />
+        <StatTile icon={Users} label="Arrests" value={stats.arrestsToday} accent="bg-blue-500" />
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader
+            title="Active dispatch"
+            subtitle="Calls for service in your district"
+            action={
+              <Badge tone="danger">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-rose-300" />
+                Live
+              </Badge>
+            }
+          />
+          <ul className="divide-y divide-white/5">
+            {dispatch.map((c) => (
+              <motion.li
+                key={c.id}
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="grid grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-3.5 hover:bg-white/[0.02] transition-colors"
+              >
+                <div className="flex flex-col items-center justify-center min-w-14 rounded-md border border-white/5 bg-white/[0.03] px-2 py-1.5">
+                  <div className="font-mono text-xs font-bold text-sky-300">
+                    {c.code}
+                  </div>
+                  <div className="text-[9px] uppercase text-slate-500">P{c.priority}</div>
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="truncate text-sm font-medium text-slate-100">
+                      {c.title}
+                    </span>
+                    <Badge tone={priorityTone[c.priority]}>P{c.priority}</Badge>
+                  </div>
+                  <div className="mt-0.5 text-xs text-slate-500 truncate">
+                    {c.location} · {c.units.join(', ')}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs text-slate-400">{c.time}</div>
+                  <div className="text-[10px] text-slate-600">{c.id}</div>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+        </Card>
+
+        <div className="space-y-6">
+          <Card>
+            <CardHeader
+              title="Units on duty"
+              subtitle={`${onlineUnits.length} officers online`}
+              action={<Badge tone="success">Connected</Badge>}
+            />
+            <ul className="divide-y divide-white/5">
+              {onlineUnits.map((u) => (
+                <li
+                  key={u.callsign}
+                  className="flex items-center gap-3 px-5 py-2.5 hover:bg-white/[0.02] transition-colors"
+                >
+                  <Avatar
+                    src={u.photo}
+                    fallback={u.callsign.split('-')[0]}
+                    alt={u.name}
+                    className="h-8 w-8 shrink-0 text-[10px]"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs font-semibold text-slate-200">
+                        {u.callsign}
+                      </span>
+                      <span className="text-xs text-slate-400 truncate">{u.name}</span>
+                    </div>
+                    <div className="text-[10px] text-slate-500 truncate">
+                      {u.location}
+                    </div>
+                  </div>
+                  <Badge
+                    tone={
+                      u.status === 'available'
+                        ? 'success'
+                        : u.status === 'enroute'
+                        ? 'info'
+                        : 'warn'
+                    }
+                  >
+                    {u.status}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </Card>
+
+          <Card>
+            <CardHeader
+              title="Priority warrants"
+              action={
+                <Badge tone="danger">
+                  <AlertTriangle className="h-3 w-3" /> {warrants.filter((w) => w.priority === 'high').length} high
+                </Badge>
+              }
+            />
+            <ul className="divide-y divide-white/5">
+              {warrants.slice(0, 3).map((w) => (
+                <li key={w.id} className="px-5 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-[10px] text-slate-500">{w.id}</span>
+                    <Badge tone={w.priority === 'high' ? 'danger' : 'warn'}>
+                      {w.priority}
+                    </Badge>
+                  </div>
+                  <div className="mt-0.5 text-sm text-slate-200">{w.citizen}</div>
+                  <div className="text-[10px] text-slate-500 truncate">
+                    {w.charges.join(' · ')}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+}
