@@ -26,7 +26,7 @@ export function Reports() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1.5 rounded-md border border-white/5 bg-white/[0.03] px-3 py-2 text-xs font-medium text-slate-300 hover:bg-white/[0.06] transition-colors">
+          <button className="flex items-center gap-1.5 rounded-md border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-xs font-medium text-slate-300 hover:bg-white/[0.06] transition-colors">
             <Filter className="h-3.5 w-3.5" /> Filter
           </button>
           <button className="flex items-center gap-1.5 rounded-md bg-sky-500 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-400 shadow-lg shadow-sky-900/30 transition-colors">
@@ -46,7 +46,7 @@ export function Reports() {
             <Card className="h-full">
               <div className="p-5">
                 <div className="flex items-start gap-3">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-sky-500/30 to-blue-700/30">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-sky-500/10 ring-1 ring-sky-500/20">
                     <FileText className="h-5 w-5 text-sky-300" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -67,7 +67,7 @@ export function Reports() {
                   {r.summary}
                 </p>
 
-                <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3 text-[11px] text-slate-500">
+                <div className="mt-4 flex items-center justify-between border-t border-white/[0.06] pt-3 text-[11px] text-slate-500">
                   <span>
                     {r.author} · {r.date}
                   </span>

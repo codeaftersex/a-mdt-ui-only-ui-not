@@ -47,15 +47,12 @@ export function Sidebar({ active, onChange }) {
               key={item.id}
               onClick={() => onChange(item.id)}
               className={cn(
-                'group relative flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors',
+                'group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all',
                 isActive
-                  ? 'bg-white/[0.04] text-white'
-                  : 'text-slate-400 hover:bg-white/[0.03] hover:text-slate-200'
+                  ? 'bg-gradient-to-r from-sky-500/20 to-transparent text-white shadow-inner'
+                  : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
               )}
             >
-              {isActive && (
-                <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-r-full bg-sky-400" />
-              )}
               <Icon
                 className={cn(
                   'h-4 w-4 shrink-0 transition-colors',
@@ -63,13 +60,16 @@ export function Sidebar({ active, onChange }) {
                 )}
               />
               <span className="font-medium tracking-wide">{item.label}</span>
+              {isActive && (
+                <span className="ml-auto h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
+              )}
             </button>
           )
         })}
       </nav>
 
-      <div className="border-t border-white/[0.06] p-3">
-        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm text-slate-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors">
+      <div className="border-t border-white/5 p-3">
+        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-slate-400 hover:bg-red-500/10 hover:text-red-300 transition-colors">
           <LogOut className="h-4 w-4" />
           <span>End shift</span>
         </button>

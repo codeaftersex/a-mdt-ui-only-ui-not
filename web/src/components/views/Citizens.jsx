@@ -51,14 +51,14 @@ export function Citizens() {
 
       <div className="grid gap-6 lg:grid-cols-[380px_1fr]">
         <Card className="overflow-hidden">
-          <div className="border-b border-white/5 p-4">
+          <div className="border-b border-white/[0.06] p-4">
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search records…"
-                className="w-full rounded-md border border-white/5 bg-white/[0.03] py-2 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-500 outline-none focus:border-sky-500/50 transition-colors"
+                className="w-full rounded-md border border-white/[0.06] bg-white/[0.03] py-2 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-500 outline-none focus:border-sky-500/50 transition-colors"
               />
             </div>
             <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-slate-500">
@@ -67,7 +67,7 @@ export function Citizens() {
             </div>
           </div>
 
-          <ul className="max-h-[640px] divide-y divide-white/5 overflow-y-auto">
+          <ul className="max-h-[640px] divide-y divide-white/[0.06] overflow-y-auto">
             {filtered.map((c) => {
               const active = c.id === selectedId
               return (
@@ -122,9 +122,8 @@ export function Citizens() {
               className="space-y-6"
             >
               <Card>
-                <div className="relative overflow-hidden p-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/10 via-transparent to-transparent" />
-                  <div className="relative flex items-start gap-5">
+                <div className="p-6">
+                  <div className="flex items-start gap-5">
                     <Avatar
                       src={selected.photo}
                       fallback={selected.avatar}
@@ -209,7 +208,7 @@ export function Citizens() {
                     </button>
                   }
                 />
-                <ul className="divide-y divide-white/5">
+                <ul className="divide-y divide-white/[0.06]">
                   {[
                     { type: 'Traffic stop', date: '2026-05-29', officer: 'J. Reynolds', tone: 'info' },
                     { type: 'Field interview', date: '2026-04-12', officer: 'K. Tanaka', tone: 'default' },

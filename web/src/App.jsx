@@ -25,13 +25,7 @@ export default function App() {
   const View = views[active]
 
   return (
-    <div className="relative flex h-screen w-screen overflow-hidden bg-[#070b15] text-slate-100 font-sans antialiased">
-      <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute top-1/3 -right-40 h-[500px] w-[500px] rounded-full bg-sky-500/10 blur-[120px]" />
-        <div className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full bg-indigo-700/10 blur-[120px]" />
-      </div>
-
+    <div className="relative flex h-screen w-screen overflow-hidden bg-[#0a0b0f] text-slate-100 font-sans antialiased">
       <Sidebar active={active} onChange={setActive} />
 
       <div className="relative flex flex-1 flex-col overflow-hidden">

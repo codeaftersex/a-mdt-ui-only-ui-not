@@ -26,10 +26,8 @@ export function Warrants() {
           >
             <Card className="overflow-hidden">
               <div
-                className={`h-1 w-full ${
-                  w.priority === 'high'
-                    ? 'bg-gradient-to-r from-rose-500 to-rose-700'
-                    : 'bg-gradient-to-r from-amber-500 to-amber-700'
+                className={`h-0.5 w-full ${
+                  w.priority === 'high' ? 'bg-rose-500' : 'bg-amber-500'
                 }`}
               />
               <div className="p-5">
@@ -57,7 +55,7 @@ export function Warrants() {
                   {w.charges.map((c) => (
                     <span
                       key={c}
-                      className="rounded-md bg-white/[0.04] px-2 py-1 text-[11px] text-slate-300 border border-white/5"
+                      className="rounded-md bg-white/[0.04] px-2 py-1 text-[11px] text-slate-300 border border-white/[0.06]"
                     >
                       <Gavel className="mr-1 inline h-2.5 w-2.5 text-slate-500" />
                       {c}
@@ -65,7 +63,7 @@ export function Warrants() {
                   ))}
                 </div>
 
-                <div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/5 pt-4 text-xs">
+                <div className="mt-5 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-4 text-xs">
                   <div>
                     <div className="flex items-center gap-1 text-slate-500">
                       <Calendar className="h-3 w-3" /> Issued

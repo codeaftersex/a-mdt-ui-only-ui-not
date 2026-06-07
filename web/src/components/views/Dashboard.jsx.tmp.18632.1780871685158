@@ -91,7 +91,7 @@ export function Dashboard() {
                 animate={{ opacity: 1, x: 0 }}
                 className="grid grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-3.5 hover:bg-white/[0.02] transition-colors"
               >
-                <div className="flex flex-col items-center justify-center min-w-14 rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-1.5">
+                <div className="flex flex-col items-center justify-center min-w-14 rounded-md border border-white/5 bg-white/[0.03] px-2 py-1.5">
                   <div className="font-mono text-xs font-bold text-sky-300">
                     {c.code}
                   </div>

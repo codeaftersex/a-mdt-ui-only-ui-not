@@ -8,7 +8,7 @@ export function Avatar({ src, fallback, alt, className }) {
     return (
       <div
         className={cn(
-          'grid place-items-center rounded-full bg-gradient-to-br from-slate-600 to-slate-900 font-bold text-slate-100',
+          'grid place-items-center rounded-full bg-[#1c1e26] ring-1 ring-white/[0.06] font-semibold text-slate-300',
           className
         )}
       >

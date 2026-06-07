@@ -4,10 +4,10 @@ import { Card, CardHeader, Badge } from '../ui/Card'
 import { dispatch } from '../../data/mock'
 
 const priorityTone = { 1: 'danger', 2: 'warn', 3: 'info' }
-const priorityRing = {
-  1: 'ring-rose-500/40 shadow-rose-900/30',
-  2: 'ring-amber-500/30 shadow-amber-900/20',
-  3: 'ring-sky-500/20 shadow-sky-900/20',
+const priorityBorder = {
+  1: 'border-rose-500/30',
+  2: 'border-amber-500/30',
+  3: 'border-sky-500/20',
 }
 
 export function Dispatch() {
@@ -34,21 +34,29 @@ export function Dispatch() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.05 }}
           >
-            <Card className={`overflow-hidden ring-1 ${priorityRing[c.priority]} shadow-xl`}>
+            <Card className={`overflow-hidden ${priorityBorder[c.priority]}`}>
               <div className="flex items-stretch">
                 <div
-                  className={`flex w-20 flex-col items-center justify-center gap-0.5 ${
+                  className={`flex w-20 flex-col items-center justify-center gap-0.5 border-r border-white/[0.06] ${
                     c.priority === 1
-                      ? 'bg-gradient-to-b from-rose-500/30 to-rose-700/20'
+                      ? 'bg-rose-500/10'
                       : c.priority === 2
-                      ? 'bg-gradient-to-b from-amber-500/30 to-amber-700/20'
-                      : 'bg-gradient-to-b from-sky-500/30 to-sky-700/20'
+                      ? 'bg-amber-500/10'
+                      : 'bg-sky-500/10'
                   }`}
                 >
-                  <div className="font-mono text-sm font-bold text-white">
+                  <div
+                    className={`font-mono text-sm font-bold ${
+                      c.priority === 1
+                        ? 'text-rose-300'
+                        : c.priority === 2
+                        ? 'text-amber-300'
+                        : 'text-sky-300'
+                    }`}
+                  >
                     {c.code}
                   </div>
-                  <div className="text-[10px] uppercase tracking-wider text-white/70">
+                  <div className="text-[10px] uppercase tracking-wider text-slate-400">
                     P{c.priority}
                   </div>
                 </div>
@@ -68,7 +76,7 @@ export function Dispatch() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-white/5 bg-black/20 px-4 py-2.5">
+              <div className="flex items-center justify-between border-t border-white/[0.06] bg-[#0f1015] px-4 py-2.5">
                 <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
                   <Users className="h-3 w-3 text-emerald-400" />
                   <span className="font-mono">{c.units.join(' · ')}</span>
@@ -78,7 +86,7 @@ export function Dispatch() {
                 </div>
               </div>
 
-              <div className="flex divide-x divide-white/5 border-t border-white/5">
+              <div className="flex divide-x divide-white/[0.06] border-t border-white/[0.06]">
                 <button className="flex-1 py-2.5 text-xs font-medium text-emerald-300 hover:bg-emerald-500/10 transition-colors">
                   <Radio className="mr-1 inline h-3 w-3" /> Attach
                 </button>

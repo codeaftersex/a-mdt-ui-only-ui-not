@@ -4,7 +4,7 @@ export function Card({ className, children, ...props }) {
   return (
     <div
       className={cn(
-        'rounded-xl border border-white/5 bg-[#0f1a2e]/60 backdrop-blur shadow-[0_8px_30px_rgba(0,0,0,0.25)]',
+        'rounded-lg border border-white/[0.06] bg-[#13141a]',
         className
       )}
       {...props}
@@ -18,7 +18,7 @@ export function CardHeader({ title, subtitle, action, className }) {
   return (
     <div
       className={cn(
-        'flex items-start justify-between gap-4 border-b border-white/5 px-5 py-4',
+        'flex items-start justify-between gap-4 border-b border-white/[0.06] px-5 py-4',
         className
       )}
     >

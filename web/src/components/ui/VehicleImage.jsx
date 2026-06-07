@@ -15,7 +15,7 @@ export function VehicleImage({ spawnName, alt, className }) {
     return (
       <div
         className={cn(
-          'grid place-items-center rounded-md bg-white/[0.03] border border-white/5',
+          'grid place-items-center rounded-md bg-[#0f1015] border border-white/[0.06]',
           className
         )}
       >
@@ -27,7 +27,7 @@ export function VehicleImage({ spawnName, alt, className }) {
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-md bg-gradient-to-br from-slate-800/60 to-slate-950/60 border border-white/5',
+        'relative overflow-hidden rounded-md bg-[#0f1015] border border-white/[0.06]',
         className
       )}
     >
